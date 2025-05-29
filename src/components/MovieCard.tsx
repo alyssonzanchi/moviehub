@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { Calendar, Star, Film } from 'lucide-react';
 import { Card, CardContent, CardTitle } from '@/components/ui/card';
 
 interface Movie {
@@ -24,14 +25,17 @@ export function MovieCard({ movie }: { movie: Movie }) {
       </div>
       <CardContent className="p-2 text-sm font-medium">
         <CardTitle className="text-base mt-1">{movie.title}</CardTitle>
-        <div className="text-sm text-muted-foreground mt-1">
-          {movie.releaseDate}
+        <div className="flex items-center gap-1 text-sm text-muted-foreground mt-2">
+          <Calendar className="w-4 h-4" />
+          <span>{movie.releaseDate}</span>
         </div>
-        <div className="text-sm text-yellow-600 font-medium mt-1">
-          ⭐ {movie.voteAverage.toFixed(1)}
+        <div className="flex items-center gap-1 text-xs text-muted-foreground mt-2">
+          <Film className="w-4 h-4" />
+          <span className="truncate">{movie.genres.join(', ')}</span>
         </div>
-        <div className="text-xs text-muted-foreground mt-1">
-          {movie.genres.join(', ')}
+        <div className="flex items-center gap-1 text-sm text-yellow-600 font-medium mt-2">
+          <Star className="w-4 h-4" />
+          <span>{movie.voteAverage.toFixed(1)}</span>
         </div>
       </CardContent>
     </Card>
